@@ -1,6 +1,13 @@
+const AppError = require("../utils/AppError");
+
 class UsersController {
   create(request, response) {
     const { name, email, password } = request.body;
+    
+
+    if(!name) {
+      throw new AppError("Usuário não enviou o nome dele!");
+    };
 
     response.status(201).json({
       name,
