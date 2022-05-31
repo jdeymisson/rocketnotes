@@ -3,10 +3,12 @@ const sqlite = require("sqlite");
 const path = require("path");
 
 async function sqliteConnection() {
-  await sqlite.open({
+  const database = await sqlite.open({
     filename: path.resolve(__dirname, "../", "database.db"),
     driver: sqlite3.Database
   });
+
+  return database;
 };
 
 module.exports = sqliteConnection;
