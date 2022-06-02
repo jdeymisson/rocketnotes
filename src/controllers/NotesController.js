@@ -2,9 +2,10 @@ const knex = require("../database/knex");
 
 class NotesController {
   async create(request, response) {
-    const { title, description, tags, links } = request.body;
+    const { title, description, tags, links} = request.body;
     const { user_id } = request.params;
 
+    console.log(user_id)
     const note_id = await knex("notes").insert({
       title,
       description,
@@ -18,8 +19,6 @@ class NotesController {
       };
     });
 
-    console.log(linksInsert);
-    
     await knex("links").insert(linksInsert);
 
     const tagsInsert = tags.map( name => {
