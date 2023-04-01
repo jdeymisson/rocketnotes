@@ -1,6 +1,6 @@
 import { Container } from "./styles";
-export const Tag = ({ title }) => {
+export const Tag = ({ title, ...rest }) => {
     return (
-        <Container>{ title }</Container>
+        <Container {...rest} >{ title }</Container>
     );
 };
