@@ -11,3 +11,15 @@ export const Container = styled.div`
         "content"
     ;
 `;  
+
+export const Links = styled.ul`
+    list-style: none;
+
+    > li  {
+        margin-top: 1.2rem;
+
+        a {
+            color: ${({ theme }) => theme.COLORS.WHITE};
+        }
+    }
+`;
