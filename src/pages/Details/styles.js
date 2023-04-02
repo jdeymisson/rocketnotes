@@ -27,6 +27,7 @@ export const Links = styled.ul`
             color: ${({ theme }) => theme.COLORS.WHITE};
         }
     }
+<<<<<<< HEAD
 `;
 
 export const Content = styled.div`
@@ -51,4 +52,6 @@ export const Content = styled.div`
         margin-top: 1.6rem;
         text-align: justify;
     }
+=======
+>>>>>>> c03ee202326ae8d3f8f121c334bd32aa76189bf3
 `;
