@@ -5,6 +5,7 @@ import { ButtonText } from "../../components/ButtonText"
 import { Section } from "../../components/Section"
 import { Input } from "../../components/Input";
 import { Note } from "../../components/Note";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
     return(
@@ -38,9 +39,9 @@ export const Home = () => {
                 />
               </Section>
             </Content>
-            <NewNotes>
+            <NewNotes  to="/new">
                 <FiPlus />
-                <span>Criar nota</span>
+                Criar nota
             </NewNotes>
         </Container>
     )
