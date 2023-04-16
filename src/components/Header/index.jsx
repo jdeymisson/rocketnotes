@@ -14,7 +14,7 @@ export const Header = ({ title, loading=false, ...rest }) => {
             <strong>Johnny Deymisson</strong>
           </div>
         </Profile>
-        <Logout>
+        <Logout  to="/signin">
           <RiShutDownLine />
         </Logout>
       </Container>
