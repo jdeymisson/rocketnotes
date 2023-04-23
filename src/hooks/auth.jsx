@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
             };
         };
     };
-
+    
     return(
         <AuthContext.Provider value={{ signIn, user: data.user }}>
             {children}
