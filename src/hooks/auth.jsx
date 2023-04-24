@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext, useContext } from "react";
 import { api } from "../services/api";
 
@@ -12,6 +12,9 @@ const AuthProvider = ({ children }) => {
             const response = await api.post("/sessions", { email, password });
             const { user, token } = response.data;
 
+            localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
+            localStorage.setItem("@rocketnotes:token", JSON.stringify(token));
+
             api.defaults.headers.authorization = `Bearer ${ token }`;
 
             setData({ user, token })
@@ -24,6 +27,20 @@ const AuthProvider = ({ children }) => {
         };
     };
     
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("@rocketnotes:user"));
+        const token = localStorage.getItem("@rocketnotes:token");
+
+        if(user && token) {
+            api.defaults.headers.authorization = `Bearer ${ token }`;
+
+            setData({
+                user, 
+                token
+            });
+        };
+    }, []);
+
     return(
         <AuthContext.Provider value={{ signIn, user: data.user }}>
             {children}
