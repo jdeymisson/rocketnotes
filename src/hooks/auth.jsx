@@ -32,7 +32,33 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem("@rocketnotes:token");
         setData({});
     };
-    
+
+    const updateProfile = async ({ user, avatarFile }) => {
+        try {
+            if(avatarFile) {
+                const fileUploadForm = new FormData();
+                fileUploadForm.append("avatar", avatarFile);
+
+                const response = await api.patch("/users/avatar", fileUploadForm);
+
+                user.avatar = response.data.avatar;
+            };
+
+            await api.put("/users", user);
+            localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
+            
+            setData({ user, token: data.token });
+            alert("Perfil atualizado!")
+        }catch(error) {
+            if(error.response) {
+                console.log("entrou")
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível atualizar o perfil do usuário.")
+            };
+        };
+    };
+
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("@rocketnotes:user"));
         const token = localStorage.getItem("@rocketnotes:token");
@@ -48,7 +74,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     return(
-        <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
+        <AuthContext.Provider value={{ signIn, signOut, updateProfile, user: data.user }}>
             {children}
         </AuthContext.Provider>
     );
