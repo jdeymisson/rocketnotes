@@ -7,12 +7,13 @@ import avatarPlaceholder from "../../assets/avatar_placeholder.svg";
 export const Header = ({ title, loading=false, ...rest }) => {
   const { signOut, user } = useAuth();
 
-  const teste = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
-    return (
+  const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+
+  return (
       <Container>
         <Profile to="/profile">
           <img 
-            src={teste}
+            src={avatarURL}
             alt="Foto do usuário"  
           />
           <div>
