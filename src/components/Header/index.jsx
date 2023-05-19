@@ -18,7 +18,7 @@ export const Header = ({ title, loading=false, ...rest }) => {
           />
           <div>
             <span>Bem-vindo</span>
-            <strong>Johnny Deymisson</strong>
+            <strong>{user.name}</strong>
           </div>
         </Profile>
         <Logout onClick={ signOut }>
